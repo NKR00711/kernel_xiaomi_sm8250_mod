@@ -1269,7 +1269,7 @@ SYSCALL_DEFINE1(newuname, struct new_utsname __user *, name)
 		// 	strcpy(tmp.release, "5.10.240");
 		// }
 		// else {
-			strcpy(tmp.release, "4.19.325");
+			strcpy(tmp.release, "4.19.325-perf+");
 		// }
 		pr_info("fake uname: %s release=%s\n",
 			 current->comm, tmp.release);
