@@ -1265,9 +1265,14 @@ SYSCALL_DEFINE1(newuname, struct new_utsname __user *, name)
 	    !strncmp(current->comm, "netbpfload", 10) ||
 	    !strncmp(current->comm, "netd", 4) ||
 	    !strncmp(current->comm, "uprobestats", 11)) {
-		strcpy(tmp.release, "4.19.325-perf");//"5.10.240");
-		// pr_debug("fake uname: %s release=%s\n",
-			 // current->comm, tmp.release);
+		// if(current_uid().val == 0) {
+		// 	strcpy(tmp.release, "5.10.240");
+		// }
+		// else {
+			strcpy(tmp.release, "4.19.325");
+		// }
+		pr_info("fake uname: %s release=%s\n",
+			 current->comm, tmp.release);
 	}
 	up_read(&uts_sem);
 	if (copy_to_user(name, &tmp, sizeof(tmp)))
