@@ -87,3 +87,4 @@ jobs:
           *.zip
           out/arch/arm64/boot/Image
           out/arch/arm64/boot/dtb
+          out/drivers/kerneldriver/kerneldriver.ko
