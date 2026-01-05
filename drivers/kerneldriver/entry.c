@@ -85,7 +85,7 @@ long dispatch_ioctl(struct file *const file, unsigned int const cmd, unsigned lo
 	}
 	case OP_MODULE_BASE:
 	{
-		if (copy_from_user(&mb, (void __user *)arg, sizeof(mb)) != 0 || copy_from_user(, (void __user *)mb.name, sizeof(name) - 1) != 0)
+		if (copy_from_user(&mb, (void __user *)arg, sizeof(mb)) != 0 || copy_from_user(name, (void __user *)mb.name, sizeof(name) - 1) != 0)
 		{
 			return -1;
 		}
