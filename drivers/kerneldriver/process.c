@@ -4,6 +4,7 @@
 #include <linux/tty.h>
 #include <linux/mm.h>
 #include <linux/version.h>
+#include <linux/sched/mm.h>
 
 #define ARC_PATH_MAX 256
 
