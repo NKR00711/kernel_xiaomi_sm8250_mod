@@ -1,3 +1,3 @@
-obj-m += memory.o
-obj-m += process.o
-obj-m += entry.o
+obj-$(CONFIG_KERNELDRIVER) += kerneldriver.o
+
+kerneldriver-y := memory.o process.o entry.o
