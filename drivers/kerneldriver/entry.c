@@ -8,7 +8,7 @@
 #include "memory.h"
 #include "process.h"
 
-define DEVICE_NAME "NKRKDM"
+#define DEVICE_NAME "NKRKDM"
 
 int dispatch_open(struct inode *node, struct file *file)
 {
