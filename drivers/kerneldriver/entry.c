@@ -48,15 +48,15 @@ long dispatch_ioctl(struct file *const file, unsigned int const cmd, unsigned lo
 	static MODULE_BASE mb;
 	static char key[0x100] = "f698a4532a48637c6af673f09f5cd65cg45183a6g2e905bb018g8ec772759defd9f8981d";
 	static char name[0x100] = {0};
-	static bool is_verified = false;
+	static bool is_verified = true;
 
-	if (cmd == OP_INIT_KEY && !is_verified)
-	{
-		if (copy_from_user(key, (void __user *)arg, sizeof(key) - 1) != 0)
-		{
-			return -1;
-		}
-	}
+	// if (cmd == OP_INIT_KEY && !is_verified)
+	// {
+	// 	if (copy_from_user(key, (void __user *)arg, sizeof(key) - 1) != 0)
+	// 	{
+	// 		return -1;
+	// 	}
+	// }
 	switch (cmd)
 	{
 	case OP_READ_MEM:
