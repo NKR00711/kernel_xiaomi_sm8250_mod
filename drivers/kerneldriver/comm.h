@@ -1,3 +1,6 @@
+// comm.h
+#include <linux/random.h>
+
 typedef struct _COPY_MEMORY
 {
 	pid_t pid;
