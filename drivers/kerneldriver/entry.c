@@ -46,9 +46,9 @@ long dispatch_ioctl(struct file *const file, unsigned int const cmd, unsigned lo
 {
 	static COPY_MEMORY cm;
 	static MODULE_BASE mb;
-	static char key[0x100] = "f698a4532a48637c6af673f09f5cd65cg45183a6g2e905bb018g8ec772759defd9f8981d";
+	// static char key[0x100] = "f698a4532a48637c6af673f09f5cd65cg45183a6g2e905bb018g8ec772759defd9f8981d";
 	static char name[0x100] = {0};
-	static bool is_verified = true;
+	// static bool is_verified = true;
 
 	// if (cmd == OP_INIT_KEY && !is_verified)
 	// {
@@ -85,7 +85,7 @@ long dispatch_ioctl(struct file *const file, unsigned int const cmd, unsigned lo
 	}
 	case OP_MODULE_BASE:
 	{
-		if (copy_from_user(&mb, (void __user *)arg, sizeof(mb)) != 0 || copy_from_user(name, (void __user *)mb.name, sizeof(name) - 1) != 0)
+		if (copy_from_user(&mb, (void __user *)arg, sizeof(mb)) != 0 || copy_from_user(, (void __user *)mb.name, sizeof(name) - 1) != 0)
 		{
 			return -1;
 		}
