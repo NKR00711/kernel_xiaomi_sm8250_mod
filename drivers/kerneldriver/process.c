@@ -9,6 +9,7 @@
 #include <linux/fs.h>
 #include <linux/dcache.h>
 #include <linux/rwsem.h>
+#include "linux/sched/signal.h"
 
 #if LINUX_VERSION_CODE < KERNEL_VERSION(5, 8, 0)
 #define mmap_read_lock(mm)    down_read(&(mm)->mmap_sem)
@@ -69,4 +70,15 @@ uintptr_t get_module_base(pid_t pid, char *name)
 	mmap_read_unlock(mm);
 	mmput(mm);
 	return base_addr;
+}
+
+pid_t get_process_pid(char *comm)
+{
+	struct task_struct *task;
+	for_each_process(task) {
+		if (task->comm == comm) {
+			return task->pid;
+		}
+	}
+	return 0;
 }
