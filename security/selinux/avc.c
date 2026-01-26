@@ -206,13 +206,6 @@ static void avc_dump_query(struct audit_buffer *ab, struct selinux_state *state,
 #ifdef CONFIG_KSU_SUSFS
 bypass_orig_flow:
 #endif
-	rc = security_sid_to_context(state, tsid, &scontext, &scontext_len);
-	if (rc)
-		audit_log_format(ab, " tsid=%d", tsid);
-	else {
-		audit_log_format(ab, " tcontext=%s", scontext);
-		kfree(scontext);
-	}
 
 	BUG_ON(!tclass || tclass >= ARRAY_SIZE(secclass_map));
 	audit_log_format(ab, " tclass=%s", secclass_map[tclass-1].name);
