@@ -35,11 +35,10 @@ else
 fi
 
 if [ -z "$KBUILD_BUILD_TIMESTAMP" ]; then
-	TIMESTAMP="Mon Jan 26 00:00:00 IST 2025"#`date`
+	TIMESTAMP=`date`
 else
 	TIMESTAMP=$KBUILD_BUILD_TIMESTAMP
 fi
-
 if test -z "$KBUILD_BUILD_USER"; then
 	LINUX_COMPILE_BY=$(whoami | sed 's/\\/\\\\/')
 else
