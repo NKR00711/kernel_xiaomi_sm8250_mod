@@ -1,0 +1,30 @@
+name: Restore Repo to Specific State
+on:
+  workflow_dispatch:
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync to Commit and Commit Changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+          # 1. Reset the working tree to the target commit (but keep the HEAD where it is)
+          git reset --hard 0aa11e68bf2525f2a02da605766437d9cb423dab
+
+          # 2. Move the pointer back to the current tip of 'main' but keep the files as they were at 0aa11e6
+          git reset --soft origin/main
+
+          # 3. Create a new commit that represents the restoration
+          git commit -m "Restoring repository state to 0aa11e6"
+
+          # 4. Push this new commit to the remote
+          git push origin main
