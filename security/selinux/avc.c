@@ -209,15 +209,16 @@ bypass_orig_flow:
 	rc = security_sid_to_context(state, tsid, &scontext, &scontext_len);
 	if (rc)
 		audit_log_format(ab, " tsid=%d", tsid);
-	else
+	else {
 #ifdef CONFIG_KSU_SUSFS
 	 if (susfs_is_avc_log_spoofing_enabled && unlikely(strstr(tcontext, ":su:") || strstr(tcontext, ":magisk:"))) {
 			audit_log_format(ab, " tcontext=u:r:priv_app:s0:c512,c768");
 		} else 
 #endif
-	 {
-		audit_log_format(ab, " tcontext=%s", scontext);
-		kfree(scontext);
+		{
+			audit_log_format(ab, " tcontext=%s", scontext);
+			kfree(scontext);
+		}
 	}
 	
 	BUG_ON(!tclass || tclass >= ARRAY_SIZE(secclass_map));
