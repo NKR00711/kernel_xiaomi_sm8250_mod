@@ -68,10 +68,6 @@ jobs:
         tar -zxvf Clang-15.0.7-20251111.tar.gz
         cd $GITHUB_WORKSPACE
 
-    - name: Clean build directory
-      run: |
-        rm -rf out
-
     - name: Build kernel
       run: |
         if [ "${{ github.event.inputs.include_ksu }}" = "true" ]; then
