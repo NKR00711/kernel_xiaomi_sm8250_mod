@@ -40,15 +40,6 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Clean old build output (safe clean)
-      run: |
-        set -eux
-        # Remove kernel output directory to avoid stale config/headers when tree changes
-        rm -rf out
-
-        # Optional: keep ccache but reset stats
-        ccache -z || true
-
     - name: Install dependencies
       run: |
         sudo apt update
@@ -96,4 +87,3 @@ jobs:
           *.zip
           out/arch/arm64/boot/Image
           out/arch/arm64/boot/dtb
-          out/drivers/kerneldriver/kerneldriver.ko

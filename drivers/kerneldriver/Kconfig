@@ -1,3 +1,0 @@
-config KERNELDRIVER
-    tristate "Kernel Driver"
-    default m
