@@ -211,7 +211,7 @@ bypass_orig_flow:
 		audit_log_format(ab, " tsid=%d", tsid);
 	else {
 #ifdef CONFIG_KSU_SUSFS
-	 if (susfs_is_avc_log_spoofing_enabled && unlikely(strstr(scontext, ":su:") || strstr(scontext, ":magisk:"))) {
+	 if (likely(susfs_is_avc_log_spoofing_enabled) && unlikely(strstr(scontext, ":su:"))) {
 			audit_log_format(ab, " tcontext=u:r:priv_app:s0:c512,c768");
 		} else 
 #endif
