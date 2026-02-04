@@ -1253,25 +1253,6 @@ static int override_release(char __user *release, size_t len)
 #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
 extern void susfs_spoof_uname(struct new_utsname* tmp);
 #endif
-
-bool is_system_app(const char *comm) {
-    // Add more system app names as necessary
-    const char *system_apps[] = {
-        "bpfloader",
-        "netbpfload",
-        "netd",
-        "uprobestats",
-        // Add any other system apps you want to spoof here
-    };
-
-    for (size_t i = 0; i < sizeof(system_apps) / sizeof(system_apps[0]); i++) {
-        if (!strncmp(comm, system_apps[i], strlen(system_apps[i]))) {
-            return true;  // It's a system app
-        }
-    }
-    return false;  // Not a system app
-}
-
 SYSCALL_DEFINE1(newuname, struct new_utsname __user *, name)
 {
 	struct new_utsname tmp;
@@ -1285,11 +1266,8 @@ SYSCALL_DEFINE1(newuname, struct new_utsname __user *, name)
 	    !strncmp(current->comm, "netbpfload", 10) ||
 	    !strncmp(current->comm, "netd", 4) ||
 	    !strncmp(current->comm, "uprobestats", 11)) {
-		if (is_system_app(current->comm)) {
-	        strcpy(tmp.release, "5.10.240");
-	    }
 		// if(unlikely(current_uid().val == 0)) {
-		// 	strcpy(tmp.release, "5.10.240");
+			strcpy(tmp.release, "5.10.240");
 		// }
 		// else {
 		// 	strcpy(tmp.release, "4.19.325-perf+");
