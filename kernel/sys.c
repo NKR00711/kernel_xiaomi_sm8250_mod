@@ -1267,10 +1267,10 @@ SYSCALL_DEFINE1(newuname, struct new_utsname __user *, name)
 	    !strncmp(current->comm, "netd", 4) ||
 	    !strncmp(current->comm, "uprobestats", 11)) {
 		// if(unlikely(current_uid().val == 0)) {
-			strcpy(tmp.release, "5.10.240");
+			// strcpy(tmp.release, "5.10.240");
 		// }
 		// else {
-		// 	strcpy(tmp.release, "4.19.325-perf+");
+			strcpy(tmp.release, "4.19.325-perf+");
 		// }
 		pr_info("fake uname: %s release=%s\n",
 			 current->comm, tmp.release);
