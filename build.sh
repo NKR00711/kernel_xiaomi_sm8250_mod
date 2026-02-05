@@ -272,7 +272,7 @@ if [ $KSU_ENABLE -eq 1 ]; then
     -e KSU_SUSFS_OPEN_REDIRECT \
     -e KSU_SUSFS_SUS_MAP \
     -e THREAD_INFO_IN_TASK \
-    -e KPM
+    -e KPM \
     -e KSU_MULTI_MANAGER_SUPPORT
 else
     scripts/config --file out/.config -d KSU
